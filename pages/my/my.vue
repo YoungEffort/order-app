@@ -21,11 +21,11 @@
 				</view>
 			</view>
 			<view class="my-operation">
-				<view class="my-operation-row">
+				<view class="my-operation-row" @click="goMyOrder">
 					<text>我的订单</text>
 					<image src="../../static/images/icon-3.png" class="my-operation-arrow"/>
 				</view>
-				<view class="my-operation-row">
+				<view class="my-operation-row" @click="goPersonal">
 					<text>个人信息</text>
 					<image src="../../static/images/icon-3.png" class="my-operation-arrow"/>
 				</view>
@@ -42,7 +42,18 @@
 			}
 		},
 		methods: {
-			
+			// 我的订单
+			goMyOrder () {
+				uni.navigateTo({
+					url: '/pages/myOrder/myOrder'
+				})
+			},
+			// 个人信息
+			goPersonal() {
+				uni.navigateTo({
+					url: '/pages/personal/personal'
+				})
+			}
 		}
 	}
 </script>
@@ -81,14 +92,14 @@
 			margin: 0 auto;
 			padding: 5% 5% 10px;
 			width: 90%;
-			border-radius: 10px 10px 0 0 ;
+			border-radius: 10px;
 			background: #fff;
 			.my-mgs{
 				font-size: 14px;
 				
 			}
 			.my-title{
-				margin-bottom: 20px;
+				margin-bottom: 12px;
 				padding-bottom: 6px;
 				border-bottom: 1px solid #C0C0C0;
 				text-align: center;
