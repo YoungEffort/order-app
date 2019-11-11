@@ -27,7 +27,10 @@
 		{
 			"path": "pages/personal/personal",
 			"style": {
-				"navigationBarTitleText": "个人信息"
+				"navigationBarTitleText": "个人信息",
+				"app-plus": {
+					"softinputNavBar":"none"
+				}
 			}
 		}
     ],

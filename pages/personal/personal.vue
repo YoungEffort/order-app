@@ -1,20 +1,21 @@
+<!-- 个人信息 -->
 <template>
 	<view class="personal">
-		<form @submit="formSubmit">
-			<view class="personal-row">
-			   <view class="personal-lable">姓名</view>
-			   <input name="input" placeholder="请输入姓名" class="personal-input"/>
+		<view class="personal-row">
+		   <view class="personal-lable">姓名</view>
+		   <input name="input"
+			v-model="personalData.name"
+			placeholder="请输入姓名"
+			class="personal-input"/>
+		</view>
+		<view class="personal-row" @click="showPicker">
+			<view class="personal-lable">组织</view>
+			<view class="personal-input">
+				<text class="placeholder-text" v-show="!pickerText">请选择</text>
+				<text class="placeholder-value" v-show="pickerText">{{pickerText}}</text>
 			</view>
-			<view class="personal-row" @click="showPicker">
-				<view class="personal-lable">组织</view>
-				<view class="personal-input">
-					<text class="placeholder-text" v-show="!pickerText">请选择</text>
-					<text class="placeholder-value" v-show="pickerText">{{pickerText}}</text>
-				</view>
-			</view>
-			<button form-type="submit" class="personal-submit">完成</button>
-		</form>
-		
+		</view>
+		<button class="personal-submit" @click="confirm">完成</button>
 		 <mpvue-picker ref="mpvuePicker" 
 			className = 'mpvue-picker-container'
 			mode="multiLinkageSelector"
@@ -85,10 +86,6 @@
 			}
 		},
 		methods: {
-			// 表单数据获取
-			formSubmit(e) {
-			   console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))        
-			},
 			// 组织选择联动显示
 			showPicker() {
 			   this.$refs.mpvuePicker.show();
@@ -97,7 +94,14 @@
 			onConfirm(e) {
 				let text = e.label.split('-')
 				this.pickerText = text[0] + ' / ' + text[1]
-			}
+			},
+			// 完成验证数据
+			confirm() {
+			   console.log(this.personalData)    
+				uni.showToast({
+					title: '不能为空'
+				});
+			},
 		}
 	}
 </script>
